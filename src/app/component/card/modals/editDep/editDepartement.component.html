@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <form [formGroup]="departementForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <!-- Department Name -->
+        <div class="mb-3">
+            <label for="Nom" class="form-label">Nom de département</label>
+            <input type="text" class="form-control" id="Nom" formControlName="name" required />
+            <div *ngIf="departementForm.get('name')?.touched && departementForm.get('name')?.invalid" class="invalid-feedback">
+                <small *ngIf="departementForm.get('name')?.errors?.['required']">Le Nom de département est requis</small>
+            </div>
+        </div>
+
+        <!-- Photo Upload -->
+        <div class="mb-3">
+            <label for="photo" class="form-label">Photo</label>
+            <input type="file" class="form-control" id="photo" (change)="onFileChange($event)" required />
+            
+            <!-- Image Preview -->
+            <div *ngIf="selectedFileBase64; else defaultTemplate">
+                <img [src]="selectedFileBase64" class="img-thumbnail mt-3" alt="Photo du département" style="width: 100px; height: auto;">
+            </div>
+            <ng-template #defaultTemplate>
+                <img [src]="departementForm.get('photo')?.value ? departementForm.get('photo')?.value : data.departement.photo" 
+                     class="img-thumbnail mt-3" 
+                     alt="Photo du département" 
+                     style="width: 100px; height: auto;">
+            </ng-template>
+
+            <div *ngIf="departementForm.get('photo')?.touched && departementForm.get('photo')?.invalid" class="invalid-feedback">
+                <small *ngIf="departementForm.get('photo')?.errors?.['required']">La photo est requise</small>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100" [disabled]="departementForm.invalid">Soumettre</button>
+    </form>
+</div>

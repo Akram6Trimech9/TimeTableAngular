@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="searchAdd">
+      <span></span>
+ <button type="button" class="customButton" (click)="openAddmatiereModal(content)">Ajouter une Matiere</button>  
+ </div>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+      <thead>
+        <tr>
+          <th>Nom de matiere</th>
+           <th>Département</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let matiere of matieres">
+          <td>{{ matiere.matiereName }}</td>
+           <td>{{ matiere.departement?.name }}</td>
+          <td class="icons">
+            <button (click)="openEditmatiereModal(editmatiereModal, matiere)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button (click)="deletematiere(matiere._id)">
+              <i class="bi bi-trash"></i>
+            </button>
+ 
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #content let-modal> 
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter une Salle</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addMatiereForm">
+            <div class="mb-3">
+              <label for="matiereName" class="form-label">Nom de la Matiere</label>
+              <input type="text" id="matiereName" formControlName="matiereName" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="departement" class="form-label">Département</label>
+              <select id="departement" formControlName="DepartementId" class="form-control">
+                <option *ngFor="let departement of departements" [value]="departement._id">{{ departement.name }}</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Fermer</button>
+          <button type="button" class="btn btn-primary" (click)="addmatiere()">Ajouter</button>
+        </div>
+      </ng-template>
+     <ng-template #editmatiereModal let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title">Modifier la Salle</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editMatiereForm">
+         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Fermer</button>
+        <button type="button" class="btn btn-primary" >Enregistrer</button>
+      </div>
+    </ng-template>
+  </div>
+  

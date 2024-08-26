@@ -1,0 +1,83 @@
+<div class="container mt-4">
+  <!-- Form -->
+  <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()" class="bg-light p-4 rounded shadow-sm">
+    
+    <!-- Prénom -->
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Prénom</label>
+      <input type="text" id="firstName" class="form-control" formControlName="firstName" />
+      <div *ngIf="teacherForm.get('firstName')?.touched && teacherForm.get('firstName')?.invalid" class="text-danger">
+        <small *ngIf="teacherForm.get('firstName')?.errors?.['required']">Le prénom est requis</small>
+      </div>
+    </div>
+
+    <!-- Nom de famille -->
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Nom de famille</label>
+      <input type="text" id="lastName" class="form-control" formControlName="lastName" />
+      <div *ngIf="teacherForm.get('lastName')?.touched && teacherForm.get('lastName')?.invalid" class="text-danger">
+        <small *ngIf="teacherForm.get('lastName')?.errors?.['required']">Le nom de famille est requis</small>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="mb-3">
+      <label for="mobile" class="form-label">Mobile</label>
+      <input type="text" id="mobile" class="form-control" formControlName="mobile" />
+      <div *ngIf="teacherForm.get('mobile')?.touched && teacherForm.get('mobile')?.invalid" class="text-danger">
+        <small *ngIf="teacherForm.get('mobile')?.errors?.['required']">Le numéro de mobile est requis</small>
+        <small *ngIf="teacherForm.get('mobile')?.errors?.['pattern']">Numéro de mobile invalide</small>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email" />
+      <div *ngIf="teacherForm.get('email')?.touched && teacherForm.get('email')?.invalid" class="text-danger">
+        <small *ngIf="teacherForm.get('email')?.errors?.['required']">L'adresse email est requise</small>
+        <small *ngIf="teacherForm.get('email')?.errors?.['email']">Adresse email invalide</small>
+      </div>
+    </div>
+
+    <!-- Grade -->
+    <div class="mb-3">
+      <label for="grade" class="form-label">Grade</label>
+      <input type="text" id="grade" class="form-control" formControlName="grade" />
+      <div *ngIf="teacherForm.get('grade')?.touched && teacherForm.get('grade')?.invalid" class="text-danger">
+        <small *ngIf="teacherForm.get('grade')?.errors?.['required']">Le grade est requis</small>
+      </div>
+    </div>
+
+    <!-- Département -->
+    <div class="mb-3">
+      <label for="departement" class="form-label">Choisissez une matière</label>
+      <select id="departement" formControlName="departement" class="form-select">
+        <option *ngFor="let item of departements" [value]="item._id">{{item.name}}</option>
+      </select>
+      <div *ngIf="teacherForm.get('departement')?.touched && teacherForm.get('departement')?.invalid" class="text-danger">
+        <small *ngIf="teacherForm.get('departement')?.errors?.['required']">Une matière est requise</small>
+      </div>
+    </div>
+
+    <!-- Photo Upload -->
+    <div class="mb-3">
+      <label for="photo" class="form-label">Photo</label>
+      <input id="photo" type="file" class="form-control" (change)="onFileChange($event)" />
+      <div *ngIf="selectedFileBase64; else template" class="mt-2">
+        <img [src]="selectedFileBase64" class="img-thumbnail" alt="Chauffeur Photo" style="border: 1px solid grey; padding: 5px; width: 100px; height: auto;">
+      </div>
+      <ng-template #template>
+        <img [src]="teacherForm.get('photo')?.value ? teacherForm.get('photo')?.value : data.teacher.photo" class="img-thumbnail" alt="Chauffeur Photo" style="border: 1px solid grey; padding: 5px; width: 100px; height: auto;">
+      </ng-template>
+      <div *ngIf="teacherForm.get('photo')?.touched && teacherForm.get('photo')?.invalid" class="text-danger">
+        <small *ngIf="teacherForm.get('photo')?.errors?.['required']">La photo est requise</small>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary" [disabled]="teacherForm.invalid">Soumettre</button>
+    </div>
+  </form>
+</div>

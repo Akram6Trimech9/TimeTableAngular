@@ -1,0 +1,108 @@
+ <!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div
+id="main-wrapper"
+[ngClass]="{ 'show-sidebar': showMobileMenu }"
+dir="ltr"
+data-theme="light"
+data-layout="vertical"
+[attr.data-sidebartype]="sidebartype"
+data-sidebar-position="absolute"
+data-header-position="absolute"
+data-boxed-layout="full"
+>
+<header class="topbar" style="background-color: #f8f9fa;"  [ngClass]="{'navbar-dark': !showMobileMenu, 'navbar-light': showMobileMenu}" data-navbarbg="skin1">
+  <nav class="d-flex top-navbar navbar-expand-lg">
+    <div
+      class="navbar-header"
+      [ngClass]="expandLogo ? 'expand-logo' : ''"
+      data-logobg="skin6"
+    >
+      <a
+        (click)="showMobileMenu = !showMobileMenu"
+        class="nav-toggler waves-effect waves-light d-block d-lg-none"
+        href="javascript:void(0)"
+      >
+        <i class="bi bi-text-left fs-6"></i>
+      </a>
+
+      <a class="navbar-brand" href="/">
+        <!-- Logo text -->
+        <span class="logo-text mt-3" style="display: flex; justify-content: center; width: 100%; margin-top: 150px;">
+          <!-- Light Logo text -->
+          <img
+            src="../../../assets/images/isetlogo.png"
+            width="50px"
+            height="70px"
+            style="margin-top: 3%; margin-bottom: 5%;"
+            class="dark-logo"
+            alt="homepage"
+          />
+        </span>
+      </a>
+
+      <!-- Toggle which is visible on mobile only -->
+      <a
+        class="topbartoggler d-block d-lg-none waves-effect waves-light"
+        href="javascript:void(0)"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed"
+      >
+        <i class="bi bi-text-right fs-6"></i>
+      </a>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Logo -->
+    <!-- ============================================================== -->
+
+    <div class="navbar-collapse collapse navbar-light " id="navbarSupportedContent"   [ngbCollapse]="!isCollapsed" data-navbarbg="skin0">
+      <app-navigation
+        (toggleSidebar)="toggleSidebarType()"
+        class="w-100"
+      ></app-navigation>
+    </div>
+  </nav>
+</header>
+
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside
+  class="left-sidebar"
+  
+  data-sidebarbg="skin6"
+  (mouseover)="Logo()"
+  (mouseout)="Logo()"
+>
+  <app-sidebar></app-sidebar>
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <router-outlet></router-outlet>
+    <!-- ============================================================== -->
+    <!-- End Start Page Content -->
+    <!-- ============================================================== -->
+  </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+</div>

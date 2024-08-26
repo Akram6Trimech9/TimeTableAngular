@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="user-select">
+      <p> Sélectionnez un professeur : </p>
+      <div class="dropdown" (click)="toggleOptions()">
+        <div class="selected-option">
+          {{ selectedUser ? selectedUser.firstName  : 'Sélectionnez une option .. ' }}
+          <i class="fa fa-caret-down"></i>
+        </div>
+        <div class="user-list" *ngIf="optionsOpen">
+          <div *ngFor="let user of teachers" class="option" (click)="selectUser(user)">
+            <img [src]="user.photo" alt="{{ user.firstName }}" class="user-pic"/>
+            {{ user.firstName }} {{ user.lastName }}
+          </div>
+        </div>
+      </div>
+     </div>
+  
+    <div *ngIf="selectedUser" class="schedule-manager">
+        <h2>Emploi du temps pour {{ selectedUser.firstName }} {{ selectedUser.lastName }} </h2>
+        <button class="add-schedule" (click)="addSchedule()">Ajouter un nouvel emploi du temps</button>        
+      <div class="schedules">
+        <div *ngFor="let schedule of schedules" class="schedule">
+          <div class="schedule-details">
+            Emplois :  {{schedule.emploiDateId.startDate | date }} A {{schedule.emploiDateId.endDate | date}}
+           </div>
+          <div class="schedule-actions">
+            <button (click)="viewDetaoils(schedule)">View</button>
+            <button (click)="deleteSchedule(schedule)">Delete</button>
+ 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

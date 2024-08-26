@@ -1,0 +1,120 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .user-select {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .selected-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .user-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .option:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .user-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .view-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .schedule-manager {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .add-schedule {
+    padding: 10px;
+    background-color: rgb(25, 81, 157);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .schedules {
+    margin-top: 20px;
+  }
+  
+  .schedule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .schedule-details {
+    flex: 1;
+  }
+  
+  .schedule-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .schedule-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .schedule-actions button:hover {
+    background-color: #e0e0e0;
+  }
+  

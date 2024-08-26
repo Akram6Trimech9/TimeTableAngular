@@ -1,0 +1,20 @@
+<table class="table table-bordered" id="timetable-container">
+    <thead>
+      <tr>
+        <th>Heure</th>
+        <th *ngFor="let day of days">{{ day }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let slot of timeSlots">
+        <td>{{ slot.start }} - {{ slot.end }}</td>
+        <td *ngFor="let day of days">
+          <div class="mt-1" *ngFor="let event of getEvents(day, slot.start)">
+            {{ event.matiere.matiereName }} - {{ event.start }} à {{ event.end }} - Classe: {{ event.room.roomName }}
+            <br/>
+            <span>{{ event.group.groupeName}}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>

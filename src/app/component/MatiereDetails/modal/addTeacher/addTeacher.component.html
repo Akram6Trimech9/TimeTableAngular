@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="modal-header">
+    <h5>Ajout d'un fournisseur pour le chauffeur : {{data.firstName}} {{data.lastName}}</h5>
+  </div>
+  <form [formGroup]="fournisseurForm" (ngSubmit)="onSubmit()" class="chauffeur-form">
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <input id="firstName" formControlName="firstName" />
+      <div *ngIf="fournisseurForm.get('firstName')?.touched && fournisseurForm.get('firstName')?.invalid">
+        <small *ngIf="fournisseurForm.get('firstName')?.errors?.['required']">Le prénom est requis</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Nom de famille</label>
+      <input id="lastName" formControlName="lastName" />
+      <div *ngIf="fournisseurForm.get('lastName')?.touched && fournisseurForm.get('lastName')?.invalid">
+        <small *ngIf="fournisseurForm.get('lastName')?.errors?.['required']">Le nom de famille est requis</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cin">CIN</label>
+      <input id="cin" formControlName="cin" />
+      <div *ngIf="fournisseurForm.get('cin')?.touched && fournisseurForm.get('cin')?.invalid">
+        <small *ngIf="fournisseurForm.get('cin')?.errors?.['required']">CIN est requis</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile</label>
+      <input id="mobile" formControlName="mobile" />
+      <div *ngIf="fournisseurForm.get('mobile')?.touched && fournisseurForm.get('mobile')?.invalid">
+        <small *ngIf="fournisseurForm.get('mobile')?.errors?.['required']">Le numéro de mobile est requis</small>
+        <small *ngIf="fournisseurForm.get('mobile')?.errors?.['pattern']">Numéro de mobile invalide</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" />
+      <div *ngIf="fournisseurForm.get('email')?.touched && fournisseurForm.get('email')?.invalid">
+        <small *ngIf="fournisseurForm.get('email')?.errors?.['required']">L'adresse email est requise</small>
+        <small *ngIf="fournisseurForm.get('email')?.errors?.['email']">Adresse email invalide</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input id="address" formControlName="address" />
+      <div *ngIf="fournisseurForm.get('address')?.touched && fournisseurForm.get('address')?.invalid">
+        <small *ngIf="fournisseurForm.get('address')?.errors?.['required']">L'adresse est requise</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="credit">Credit</label>
+      <input id="credit" formControlName="credit" />
+       
+    </div>
+    <!-- <div class="form-group">
+      <label for="creditType">Mode d'insertion des crédits :</label>
+      <div style="display: flex; align-items: center; flex-direction: row; justify-content: flex-end;">
+        <div style="margin-right: 20px">
+          <input type="radio" id="allAtOnce" name="insertionMode" value="allAtOnce" [checked]="true" (change)="onInsertionModeChange('allAtOnce')" />
+          <label for="allAtOnce">Tout en une fois</label>
+        </div>
+        <div>
+          <input type="radio" id="oneByOne" name="insertionMode" value="oneByOne" (change)="onInsertionModeChange('oneByOne')" />
+          <label for="oneByOne">Un par un</label>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <div *ngIf="insertionMode === 'allAtOnce'">
+      <div class="form-group">
+        <label for="credit">Crédit</label>
+        <input id="credit" formControlName="credit" />
+      </div>
+    </div> -->
+    <!-- <div *ngIf="insertionMode === 'oneByOne'">
+      <div class="credit-form" *ngFor="let form of insertionForms.controls; let i = index" [formGroup]="getFormGroup(form)">
+        <div class="form-group">
+          <label for="credit">Crédit</label>
+          <input id="credit" formControlName="credit" />
+        </div>
+        <div class="form-group">
+          <label for="paymentType">Type de paiement</label>
+          <select id="paymentType" formControlName="paymentType">
+            <option value="espece">Espèces</option>
+            <option value="cheque">Chèque</option>
+          </select>
+        </div>
+        <button type="button" (click)="removeForm(i)">Supprimer</button>
+      </div>
+      <button type="button" (click)="addForm()">Ajouter un crédit</button>
+    </div> -->
+    <div class="form-group">
+      <label for="photo">Photo</label>
+      <input id="photo" type="file" (change)="onFileChange($event)" />
+    </div>
+    <button type="submit" [disabled]="fournisseurForm.invalid">Ajouter</button>
+  </form>
+</div>

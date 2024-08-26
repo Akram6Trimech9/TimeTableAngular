@@ -1,0 +1,86 @@
+<div class="container mt-4">
+  <div class="searchAdd">
+    <span></span>
+    <button type="button" class="customButton"  >Ajouter un nouveau fournisseur</button>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+           <div class="d-flex align-items-center mb-3">
+            <img [src]="departement.photo" alt="departement" width="60" class="rounded-circle me-3" />
+            <div>
+              <h5 class="mb-1">{{departement.name}}</h5>
+              <p class="mb-0 text-muted">Matiere</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Liste des enseignants de cette matiere :</h4>
+          <div class="table-responsive">
+            <table class="table align-middle text-nowrap">
+              <thead>
+                <tr>
+                  <th class="text-dark font-medium fs-4">Photo</th>
+                  <th class="text-dark font-medium fs-4">Nom</th>
+                  <th class="text-dark font-medium fs-4">Prénom</th>
+                  <th class="text-dark font-medium fs-4">Mobile</th>
+                  <th class="text-dark font-medium fs-4">Grade</th>
+                  <th class="text-dark font-medium fs-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ts of teachers">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img [src]="ts.photo" alt="user" width="45" class="rounded-circle">
+                      <div class="ms-3">
+                        <h5 class="mb-0 font-medium">{{ts.firstName}}</h5>
+                        <span class="text-muted">{{ts.email}}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="fs-4"> {{ts.firstName}}</td>
+                  <td class="fs-4"> {{ts.lastName}}</td>
+                  <td class="fs-4"> {{ts.mobile}}</td>
+                  <td class="fs-4"> {{ts.grade}}</td>
+
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <h5 class="mb-0 fw-normal me-2"> </h5>
+                      <i  class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Changer le crédit"></i>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex">
+                      <button type="button" (click)="showDetails(ts)" >
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button type="button"  (click)="deleteTeacher(ts._id)" >
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      <!-- <button type="button" >
+                        <i class="bi bi-pencil"></i>
+                      </button> -->
+                    </div>
+                  </td>
+                </tr>              
+              </tbody>
+            </table>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

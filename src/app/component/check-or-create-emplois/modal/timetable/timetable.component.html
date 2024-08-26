@@ -1,0 +1,123 @@
+<div class="container my-4">
+  <div *ngIf="!dateChecked">
+     
+    <h2 class="text-center text-primary mb-4">
+      Emploi du Temps Du 
+      <br />
+      <div>
+         <select class="form-select d-inline w-auto mx-2" [(ngModel)]="selectedDateRange">
+          <option *ngFor="let dateRange of allDates" [value]="dateRange._id">{{ dateRange.startDate | date }} - {{ dateRange.endDate | date}}</option>
+        </select>
+      </div>
+    </h2>
+    <button class="btn btn-success mb-3" (click)="checkDates()">Vérifier les dates</button>
+  </div>
+  
+
+  <div *ngIf="dateChecked">
+    <form (ngSubmit)="addEvent()" class="mb-4">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="day" class="form-label">Jour:</label>
+          <select id="day" class="form-select" [(ngModel)]="newEvent.day" name="day" required>
+            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="time" class="form-label">Horaire de début:</label>
+          <select id="time" class="form-select" [(ngModel)]="newEvent.start" name="start" required>
+            <option *ngFor="let slot of timeSlots" [value]="slot.start">{{ slot.start }} - {{ slot.end }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="end-time" class="form-label">Horaire de fin:</label>
+          <select id="end-time" class="form-select" [(ngModel)]="newEvent.end" name="end" required>
+            <option *ngFor="let slot of timeSlots" [value]="slot.end">{{ slot.end }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="matiere" class="form-label">Matière:</label>
+          <select id="matiere" class="form-select" [(ngModel)]="newEvent.matiere" name="matiere" required>
+            <option *ngFor="let matiere of matieres" [value]="matiere._id">{{ matiere.matiereName }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="group" class="form-label">Groupe:</label>
+          <select id="group" class="form-select" [(ngModel)]="newEvent.group" name="group" required>
+            <option *ngFor="let group of groups" [value]="group._id">{{ group.groupeName }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="room" class="form-label">Salle:</label>
+          <select id="room" class="form-select" [(ngModel)]="newEvent.room" name="room" required>
+            <option *ngFor="let salle of salles" [value]="salle._id">{{ salle.roomName }}</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Ajouter une matière</button>
+    </form>
+
+    <div class="row">
+      <div class="col-md-12">
+        <label for="new-time-start" class="form-label">Ajouter un nouvel horaire:</label>
+        <div class="input-group mb-3">
+          <input type="time" id="new-time-start" class="form-control" placeholder="Heure de début" [(ngModel)]="newTimeSlot.start" name="newTimeSlotStart" />
+          <input type="time" id="new-time-end" class="form-control" placeholder="Heure de fin" [(ngModel)]="newTimeSlot.end" name="newTimeSlotEnd" />
+          <button class="btn btn-secondary" (click)="addTimeSlot()">Ajouter l'horaire</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive " id="timetable-container">
+      <table class="table table-bordered text-center">
+        <thead class="table-primary">
+          <tr>
+            <th>Heure</th>
+            <th *ngFor="let day of days">{{ day }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let slot of timeSlots">
+            <td>{{ slot.start }} - {{ slot.end }}</td>
+            <td *ngFor="let day of days">
+              <div *ngFor="let event of getEvents(day, slot.start)">
+              {{event.room.roomName}} -  {{ event.start }} à {{ event.end }} -    {{event.matiere.matiereName}} 
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <button class="btn btn-info" (click)="generatePDF()">Télécharger le PDF</button>
+      <button class="btn btn-success" (click)="saveData()">Enregistrer cet emploi</button>
+    </div>
+  </div>
+</div>
+<!-- Existing Content -->
+ <!-- Error Modal -->
+ <!-- Error Modal -->
+<ng-template #errorModalContent let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">
+      <i class="fas fa-exclamation-triangle text-warning"></i> Erreur
+    </h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <i class="fas fa-times-circle text-danger"></i>
+    <p>{{ modalMessage }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">
+      <i class="fas fa-times"></i> Fermer
+    </button>
+  </div>
+</ng-template>

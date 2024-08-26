@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="left-section"></div>
+  <div class="right-section">
+    <div class="login-container">
+      <form  [formGroup]="loginForm"    class="login-form" (ngSubmit)="onSubmit()">
+        <h2 class="login-title">
+          <!-- <i class="fas fa-user-circle"></i> Login Admin -->
+           <img src="../../assets/images/isetlogo.png" style="width: 120px;" />
+        </h2>
+        <div class="form-control">
+          <i class="fas fa-user icon"></i>
+          <input type="text" placeholder="Email" formControlName="email" />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <small style="color: rgb(153, 62, 62);" *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+            <small  style="color: rgb(153, 62, 62);"  *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email</small>
+          </div>
+        </div>
+        <div class="form-control">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" placeholder="Mot de passe" formControlName="password" />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <small  style="color:  rgb(153, 62, 62);"  *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+          </div>
+                </div>
+        <div class="remember-me">
+          <input type="checkbox" id="rememberMe" class="checkbox-input" />
+          <span class="checkbox-custom"></span>
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+ 

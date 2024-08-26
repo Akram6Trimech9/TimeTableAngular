@@ -1,0 +1,36 @@
+.table-responsive {
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table td div {
+  background-color: #ffd146;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.table td div:hover {
+  background-color: #f0c040;
+}
+
+h2 input[type="date"] {
+  display: inline-block;
+  width: auto;
+  margin-left: 10px;
+}
+.modal-header {
+  background-color: #f8d7da;  
+  color: #721c24; 
+}
+
+.modal-body {
+  font-size: 1.1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="searchAdd">
+    <span></span>
+    <button type="button" class="customButton" (click)="openAddGroupModal(content)">Ajouter un Groupe</button>
+  </div>
+  <table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Capacité</th>
+        <th>Emplois</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groups">
+        <td>{{ group.groupeName }}</td>
+        <td>{{ group.studentsNumber }}</td>
+        <td>
+          <i class="bi bi-calendar-check" (click)="viewTimetable(group)"></i>
+        </td>
+        <td class="icons">
+          <button (click)="openEditGroupModal(editGroupModal, group)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button (click)="deleteGroup(group._id)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #timetableModal let-modal >
+    <div class="modal-dialog  modal-dialog-scrollable" *ngFor="let item of selectedGroupTimetable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Emploi du Temps pour {{ item?.emploiDateId.startDate | date }} - {{item.emploiDateId.endDate | date}}</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered" id="timetable-container">
+            <thead>
+              <tr>
+                <th>Heure</th>
+                <th *ngFor="let day of days">{{ day }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let slot of getTimeSlots(item)">
+                <td>{{ slot }}</td>
+                <td *ngFor="let day of days">
+                  <div class="mt-1"  *ngFor="let event of getEvents(item,day, slot)">
+                    <div [ngClass]="'event event-type-' + event.type"> 
+                      <strong>{{ event.matiere.matiereName }}</strong> - {{ event.start }} à {{ event.end }}
+                    </div>
+                    <div  >
+                      Classe: {{ event.room.roomName }}
+                    </div>
+                    <br />
+                    <div  >
+                    Enseignant :    {{ event.professorId.firstName }}  {{ event.professorId.lastName }}
+                    </div>
+                  </div>
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="!selectedGroupTimetable.length">
+            Pas d'emploi du temps disponible.
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+   <ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajouter un Groupe</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addGroupForm">
+        <div class="mb-3">
+          <label for="groupName" class="form-label">Nom du Groupe</label>
+          <input type="text" id="groupName" formControlName="groupeName" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="capacity" class="form-label">Capacité</label>
+          <input type="number" id="capacity" formControlName="studentsNumber" class="form-control" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Annuler</button>
+      <button type="button" class="btn btn-primary" (click)="addGroup()">Ajouter</button>
+    </div>
+  </ng-template>
+
+  <!-- Edit Group Modal -->
+  <ng-template #editGroupModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Modifier le Groupe</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="editGroupForm">
+        <div class="mb-3">
+          <label for="editGroupName" class="form-label">Nom du Groupe</label>
+          <input type="text" id="editGroupName" formControlName="groupeName" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="editCapacity" class="form-label">Capacité</label>
+          <input type="number" id="editCapacity" formControlName="studentsNumber" class="form-control" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Annuler</button>
+      <button type="button" class="btn btn-primary" (click)="updateGroup()">Mettre à jour</button>
+    </div>
+  </ng-template>
+</div>

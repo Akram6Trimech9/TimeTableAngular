@@ -1,0 +1,130 @@
+ 
+   .searchinput {
+    border-radius: 20px;
+    border-color: #ccc;
+    padding: 8px 16px;
+    width: 300px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  button{
+    border: none;
+     }
+    button > span > i {
+    font-size: 18px;
+    color:#0d529f ;
+    }
+  .customButton {
+    background-color: #0d529f;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .searchAdd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  /* Table Styles */
+  .table {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table thead th {
+    border-bottom: 1px solid #dee2e6;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+  }
+  
+  .table tbody td {
+    padding: 12px;
+    word-break: break-all;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  /* Pagination Styles */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination .page-item .page-link {
+    color: #0d529f;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 8px 16px;
+    margin: 0 4px;
+    border-radius: 4px;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #0d529f;
+    color: #fff;
+    border-color: #0d529f;
+  }
+  a{
+    cursor: pointer;
+  }
+  
+  
+  #timetable-container {
+    font-size: 0.75rem; /* Smaller text size */
+  }
+  
+  #timetable-container th, #timetable-container td {
+    font-size: 0.75rem; /* Apply same size to table headers and cells */
+  }
+  
+  .event {
+    position: relative;  
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #0c0c0c; 
+    overflow: hidden;  
+    background-color: yellow;
+  }
+  
+  .event-class, .event-teacher {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);  
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+  }
+  
+  .event-class {
+    margin-bottom: 20px; /* Ensure there's space for the teacher info */
+  }
+  
+  /* Define colors for different event types */
+  .event-type-1 {
+    background-color: #007bff; /* Blue */
+  }
+  
+  .event-type-2 {
+    background-color: #28a745; /* Green */
+  }
+  
+  .event-type-3 {
+    background-color: #dc3545; /* Red */
+  }
+  

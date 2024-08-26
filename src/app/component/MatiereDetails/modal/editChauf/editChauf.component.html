@@ -1,0 +1,80 @@
+<div class="container">
+    <form [formGroup]="chauffeurForm" (ngSubmit)="onSubmit()" class="chauffeur-form">
+        <div class="form-group">
+          <label for="firstName">Prénom</label>
+          <input id="firstName" formControlName="firstName" />
+          <div *ngIf="chauffeurForm.get('firstName')?.touched && chauffeurForm.get('firstName')?.invalid">
+            <small *ngIf="chauffeurForm.get('firstName')?.errors?.['required']">Le prénom est requis</small>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Nom de famille</label>
+            <input id="lastName" formControlName="lastName" />
+            <div *ngIf="chauffeurForm.get('lastName')?.touched && chauffeurForm.get('lastName')?.invalid">
+              <small *ngIf="chauffeurForm.get('lastName')?.errors?.['required']">Le nom de famille est requis</small>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="cin">CIN</label>
+          <input id="cin" formControlName="cin" />
+          <div *ngIf="chauffeurForm.get('cin')?.touched && chauffeurForm.get('cin')?.invalid">
+            <small *ngIf="chauffeurForm.get('cin')?.errors?.['required']">CIN est requis</small>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="mobile">Mobile</label>
+          <input id="mobile" formControlName="mobile" />
+          <div *ngIf="chauffeurForm.get('mobile')?.touched && chauffeurForm.get('mobile')?.invalid">
+            <small *ngIf="chauffeurForm.get('mobile')?.errors?.['required']">Le numéro de mobile est requis</small>
+            <small *ngIf="chauffeurForm.get('mobile')?.errors?.['pattern']">Numéro de mobile invalide</small>
+          </div>
+        </div>
+      
+      
+      
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" />
+          <div *ngIf="chauffeurForm.get('email')?.touched && chauffeurForm.get('email')?.invalid">
+            <small *ngIf="chauffeurForm.get('email')?.errors?.['required']">L'adresse email est requise</small>
+            <small *ngIf="chauffeurForm.get('email')?.errors?.['email']">Adresse email invalide</small>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="transportName">Type de véhicule</label>
+          <input id="transportName" formControlName="transportName" />
+          <div *ngIf="chauffeurForm.get('transportName')?.touched && chauffeurForm.get('transportName')?.invalid">
+            <small *ngIf="chauffeurForm.get('transportName')?.errors?.['required']">Le type de véhicule est requis</small>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="transportSerie">Série de véhicule</label>
+          <input id="transportSerie" formControlName="transportSerie" />
+          <div *ngIf="chauffeurForm.get('transportSerie')?.touched && chauffeurForm.get('transportSerie')?.invalid">
+            <small *ngIf="chauffeurForm.get('transportSerie')?.errors?.['required']">La série de véhicule est requise</small>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo</label>
+            <input id="photo" type="file" (change)="onFileChange($event)" />
+            <div *ngIf="selectedFileBase64 ; else template">
+                <img [src]="selectedFileBase64" class="img-thumbnail" alt="Chauffeur Photo" style="border: 1px solid grey ; padding: 5px ; margin: 5px; margin-top: 12px; width: 100px; height: auto;">
+            </div>
+            <ng-template #template >
+                <img [src]="chauffeurForm.get('photo')?.value ? chauffeurForm.get('photo')?.value : data.chauffeur.photo" class="img-thumbnail" alt="Chauffeur Photo" style="border: 1px solid grey ; padding: 5px ; margin: 5px; margin-top: 12px; width: 100px; height: auto;">
+
+            </ng-template>
+            <div *ngIf="chauffeurForm.get('photo')?.touched && chauffeurForm.get('photo')?.invalid">
+                <small *ngIf="chauffeurForm.get('photo')?.errors?.['required']">La photo est requise</small>
+            </div>
+        </div>
+        
+      
+        
+        <button type="submit" [disabled]="chauffeurForm.invalid">Soumettre</button>
+      </form>
+  </div>
+  

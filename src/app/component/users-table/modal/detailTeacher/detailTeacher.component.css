@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  margin-top: 20px;
+}
+
+.card-header h2 {
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding-top: 20px;
+}
+
+.card-footer {
+  text-align: right;
+  padding: 10px 20px;
+}

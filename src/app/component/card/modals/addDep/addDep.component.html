@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <form [formGroup]="departementForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+      <div class="mb-3">
+          <label for="departmentName" class="form-label">Nom de département</label>
+          <input type="text" class="form-control" id="departmentName" formControlName="name" required />
+          <div *ngIf="departementForm.get('name')?.touched && departementForm.get('name')?.invalid" class="invalid-feedback">
+              <small *ngIf="departementForm.get('name')?.errors?.['required']">Le nom de département est requis</small>
+          </div>
+      </div>
+
+      <div class="mb-3">
+          <label for="photo" class="form-label">Photo</label>
+          <input type="file" class="form-control" id="photo" (change)="onFileChange($event)" required />
+          <div *ngIf="departementForm.get('photo')?.touched && departementForm.get('photo')?.invalid" class="invalid-feedback">
+              <small *ngIf="departementForm.get('photo')?.errors?.['required']">La photo est requise</small>
+          </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="departementForm.invalid">Soumettre</button>
+  </form>
+</div>
