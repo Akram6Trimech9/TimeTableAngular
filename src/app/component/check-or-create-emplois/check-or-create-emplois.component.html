@@ -24,6 +24,8 @@
             Emplois :  {{schedule.emploiDateId.startDate | date }} A {{schedule.emploiDateId.endDate | date}}
            </div>
           <div class="schedule-actions">
+            <button (click)="edit(schedule)">Edit</button>
+
             <button (click)="viewDetaoils(schedule)">View</button>
             <button (click)="deleteSchedule(schedule)">Delete</button>
  

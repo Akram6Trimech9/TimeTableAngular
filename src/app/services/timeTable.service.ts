@@ -37,4 +37,7 @@ export class TimeTableService {
   return this._http.get<any>(`${ApiRoutes.timetable}group/${groupId}` )
 
  }
+ update(timeTableId :any , record :any) :Observable<any>{
+  return this._http.put<any>(`${ApiRoutes.timetable}${timeTableId}`,record )
+ }
  }

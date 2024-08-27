@@ -29,46 +29,47 @@
         </td>
       </tr>
     </tbody>
+    
   </table>
 
-  <ng-template #timetableModal let-modal >
-    <div class="modal-dialog  modal-dialog-scrollable" *ngFor="let item of selectedGroupTimetable">
+ 
+  <ng-template #timetableModal let-modal>
+    <div class="modal-dialog modal-dialog-scrollable" style="width: 100%; margin: 0 !important;">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Emploi du Temps pour {{ item?.emploiDateId.startDate | date }} - {{item.emploiDateId.endDate | date}}</h5>
+          <h5 class="modal-title">Emploi du Temps</h5>
           <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
-          <table class="table table-bordered" id="timetable-container">
-            <thead>
-              <tr>
-                <th>Heure</th>
-                <th *ngFor="let day of days">{{ day }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let slot of getTimeSlots(item)">
-                <td>{{ slot }}</td>
-                <td *ngFor="let day of days">
-                  <div class="mt-1"  *ngFor="let event of getEvents(item,day, slot)">
-                    <div [ngClass]="'event event-type-' + event.type"> 
-                      <strong>{{ event.matiere.matiereName }}</strong> - {{ event.start }} à {{ event.end }}
-                    </div>
-                    <div  >
-                      Classe: {{ event.room.roomName }}
-                    </div>
-                    <br />
-                    <div  >
-                    Enseignant :    {{ event.professorId.firstName }}  {{ event.professorId.lastName }}
-                    </div>
-                  </div>
-                </td>
-                
-              </tr>
-            </tbody>
-          </table>
-          <div *ngIf="!selectedGroupTimetable.length">
-            Pas d'emploi du temps disponible.
+          <div *ngFor="let item of selectedGroupTimetable; let i = index">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <h5 (click)="toggleTimetable(i)" class="btn btn-warning" style="width: 300px;">
+                {{ item?.emploiDateId.startDate | date }} - {{ item?.emploiDateId.endDate | date }}
+              </h5>
+              <button (click)="downloadTimetableAsPDF('timetable-container' + i)">Download</button>
+            </div>
+            <div *ngIf="expandedTimetables.has(i)">
+              <table class="table table-bordered" id="timetable-container{{i}}" #pdfContent>
+                <thead>
+                  <tr>
+                    <th>Heure</th>
+                    <th *ngFor="let day of days">{{ day }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let slot of getTimeSlots(item)">
+                    <td>{{ slot }}</td>
+                    <td *ngFor="let day of days">
+                      <div *ngFor="let event of getEvents(item, day, slot)">
+                        <strong>{{ event.matiere.matiereName }}</strong> - {{ event.start }} à {{ event.end }}<br />
+                        Classe: {{ event.room.roomName }}<br />
+                        Enseignant: {{ event.professorId.firstName }} {{ event.professorId.lastName }}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { TimeTableService } from 'src/app/services/timeTable.service';
 import { SignleTimeTableComponent } from './modal/signle-time-table/signle-time-table.component';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { EditTimetableComponent } from './modal/edit-timetable/edit-timetable.component';
    
 @Component({
   selector: 'app-check-or-create-emplois',
@@ -88,4 +89,22 @@ export class CheckOrCreateEmploisComponent implements OnInit {
       this.toastr.error('Erreur lors de la suppression de l\'emploi du temps', 'Erreur');
     });
   }
+  edit(schedule: any) {
+    const dialogRef = this.dialog.open(EditTimetableComponent, {
+      data: schedule
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const index = this.schedules.findIndex((item: any) => item._id === result._id);
+        if (index !== -1) {
+          this.schedules[index] = result; // Update the existing schedule
+          this.toastr.success('Emploi du temps modifié avec succès', 'Succès');
+        }
+      } else {
+        console.log('No changes were made');
+      }
+    });
+  }
+
 }

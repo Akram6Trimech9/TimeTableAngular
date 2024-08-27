@@ -1,0 +1,148 @@
+.emploi-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f4f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .emploi-container h2 {
+    text-align: center;
+    color: #0d529f;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .emploi-container form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .emploi-container label {
+    font-weight: bold;
+    color: #0d529f;
+  }
+  
+  .emploi-container input[type="text"],
+  .emploi-container select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .emploi-container button[type="submit"] {
+    background-color: #0d529f;
+    width: 10%;
+    height: 10%;
+    color: #fff;
+    padding: 10px ;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .emploi-container button[type="submit"]:hover {
+    background-color: #094a8d;
+  }
+  
+  .table {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #0d529f;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .table td {
+    background-color: #ffffff;
+    color: #333;
+  }
+  
+  .table tr:nth-child(even) td {
+    background-color: #f9f9f9;
+  }
+  
+  .table td div {
+    background-color: #ffd146;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
+  .table td div:hover {
+    background-color: #f0c040;
+  }
+  
+  button {
+    background-color: #0d529f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  button:hover {
+    background-color: #094a8d;
+  }
+  .form-group {
+    margin: 5px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .add-time-slot, .add-class-container {
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .add-class-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-class-container input {
+    margin-right: 10px;
+  }
+  
+  .date{
+    width: 30%;
+  }
+  .first_line{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }

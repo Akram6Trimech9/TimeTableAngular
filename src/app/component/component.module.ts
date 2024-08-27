@@ -16,6 +16,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { MatiereComponent } from './matiere/matiere.component';
 import { SalleComponent } from './salle/salle.component';
 import { DateEmploiComponent } from './date-emploi/date-emploi.component';
+import { EditTimetableComponent } from './check-or-create-emplois/modal/edit-timetable/edit-timetable.component';
    
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { DateEmploiComponent } from './date-emploi/date-emploi.component';
 
               CheckOrCreateEmploisComponent,
              SignleTimeTableComponent,
+             EditTimetableComponent,
      
    ]
 })

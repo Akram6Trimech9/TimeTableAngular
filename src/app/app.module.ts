@@ -48,8 +48,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     NavigationComponent,
     ToastrModule.forRoot(),  
     BrowserAnimationsModule,
-    NgbModule
-  ],
+    NgbModule,
+   ],
   providers: [
     {
       provide: LocationStrategy,

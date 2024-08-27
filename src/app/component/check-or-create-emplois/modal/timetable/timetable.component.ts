@@ -261,7 +261,7 @@ modalMessage : string =""
         pdf.setFontSize(18);
         pdf.text('Emploi du Temps', pdf.internal.pageSize.width / 2, 20, { align: 'center' });
         pdf.setFontSize(12);
-        pdf.text(`Date: From ${this.start} to  ${this.end}`, pdf.internal.pageSize.width / 2, 30, { align: 'center' });
+        // pdf.text(`Date: From ${this.start} to  ${this.end}`, pdf.internal.pageSize.width / 2, 30, { align: 'center' });
   
         // Add logo and professor image
         this.getBase64ImageFromUrl(this.data.photo).then((professorImage) => {
